@@ -1,0 +1,30 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  generation: 2
+  name: backend-pipeline
+spec:
+  resources:
+    - name: backend-git-repo
+      type: git
+    - name: backend-image
+      type: image
+  tasks:
+    - name: s2i-java-8
+      params:
+        - name: PATH_CONTEXT
+          value: .
+        - name: TLSVERIFY
+          value: 'false'
+        - name: MAVEN_CLEAR_REPO
+          value: 'false'
+      resources:
+        inputs:
+          - name: source
+            resource: backend-git-repo
+        outputs:
+          - name: image
+            resource: backend-image
+      taskRef:
+        kind: ClusterTask
+        name: s2i-java-8

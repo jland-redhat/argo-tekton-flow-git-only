@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: backend-image
+  annotations:
+    "helm.sh/hook": "post-install"
+spec:
+  params:
+    - name: url
+      value: >-
+        image-registry.openshift-image-registry.svc:5000/{{ $.Release.Namespace }}/{{ $.Values.global.backend.name }}
+  type: image

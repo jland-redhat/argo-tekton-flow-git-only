@@ -1,0 +1,10 @@
+---
+backend:
+  url: REQUIRED
+global:
+  frontend:
+    name: example-frontend
+    port: 8081
+  backend:
+    name: example-backend
+    port: 8080
