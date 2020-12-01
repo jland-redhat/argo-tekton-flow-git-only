@@ -9,7 +9,7 @@ entries:
     name: pipeline
     type: application
     urls:
-    - https://jland-redhat.github.io/pipeline-helm-chart/release/pipeline-2.0.1.tgz
+    - https://jaland.github.io/pipeline-helm-chart/release/pipeline-2.0.1.tgz
     version: 2.0.1
   - apiVersion: v2
     appVersion: 1.16.0
@@ -19,6 +19,6 @@ entries:
     name: pipeline
     type: application
     urls:
-    - https://jland-redhat.github.io/pipeline-helm-chart/release/pipeline-2.0.0.tgz
+    - https://jaland.github.io/pipeline-helm-chart/release/pipeline-2.0.0.tgz
     version: 2.0.0
 generated: "2020-11-16T17:24:52.383319311-05:00"
