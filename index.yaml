@@ -3,22 +3,22 @@ entries:
   pipeline:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-16T17:24:52.402814298-05:00"
+    created: "2020-12-01T11:32:03.105532866-05:00"
     description: A Helm chart for postgres
-    digest: 47d633f7f19ad56a38c8c93ed642afffd9684a97e6a5725f80785ce3dc118ecd
+    digest: da532a54e68d7499d538ef9520395d7a657134b91c01aa7fb203bd686fb3d76a
     name: pipeline
     type: application
     urls:
-    - https://jaland.github.io/pipeline-chart/release/pipeline-2.0.1.tgz
+    - https://jland-redhat.github.io/pipeline-helm-chart/release/pipeline-2.0.1.tgz
     version: 2.0.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2020-11-16T17:24:52.387237204-05:00"
+    created: "2020-12-01T11:32:03.072868389-05:00"
     description: A Helm chart for postgres
     digest: 85594c24fab362f1b539b2d2e235f556bb5b52e87ff56b1603f21d0d661fc0b2
     name: pipeline
     type: application
     urls:
-    - https://jaland.github.io/pipeline-chart/release/pipeline-2.0.0.tgz
+    - https://jland-redhat.github.io/pipeline-helm-chart/release/pipeline-2.0.0.tgz
     version: 2.0.0
-generated: "2020-11-16T17:24:52.383319311-05:00"
+generated: "2020-12-01T11:32:03.068992348-05:00"

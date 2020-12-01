@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: backend-pipeline-init-run
+  annotations:
+    "helm.sh/hook": "post-install"
+spec:
+  pipelineRef:
+    name: backend-pipeline
+  resources:
+    - name: backend-git-repo
+      resourceRef:
+        name: backend-git-repo
+    - name: backend-image
+      resourceRef:
+        name: backend-image
