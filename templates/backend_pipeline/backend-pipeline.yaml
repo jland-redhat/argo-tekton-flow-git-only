@@ -26,5 +26,5 @@ spec:
           - name: image
             resource: backend-image
       taskRef:
-        kind: ClusterTask
-        name: s2i-java-8
+        kind: Task
+        name: s2i-java-8-custom
