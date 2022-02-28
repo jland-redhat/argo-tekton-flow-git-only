@@ -1,3 +1,5 @@
+# Note this is a copy of the ClusterTask but DO NOT trust that the cluster task will not change.
+# Even if they work perfectly make a copy and use that. Or deploy your own version of the cluster task
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
