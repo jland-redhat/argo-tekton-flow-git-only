@@ -4,14 +4,33 @@ metadata:
   name: backend-pipeline
 spec:
   tasks:
-    - name: clone-app
+    - name: git-clone
+      params:
+        - name: url
+          value: 'https://github.com/Jaland/argo-tekton-flow.git'
+        - name: submodules
+          value: 'true'
+        - name: subdirectory
+          value: helm-deployments/backend
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: app-source
+    - name: s2i-java
       params:
         - name: PATH_CONTEXT
           value: .
-        - name: TLSVERIFY
-          value: 'false'
-        - name: MAVEN_CLEAR_REPO
-          value: 'false'
+        - name: IMAGE
+          value: 'image-registry.openshift-image-registry.svc:5000/user1-dev/example'
+      runAfter:
+        - git-clone
       taskRef:
-        kind: Task
-        name: clone-git-custom
+        kind: ClusterTask
+        name: s2i-java
+      workspaces:
+        - name: source
+          workspace: app-source
+  workspaces:
+    - name: app-source
