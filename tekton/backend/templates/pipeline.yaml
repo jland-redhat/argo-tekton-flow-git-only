@@ -5,10 +5,13 @@ metadata:
 spec:
   params:
   - name: GIT_URL
+    type: string
     default: '{{ .Values.git.url }}'
   - name: GIT_REVISION
+    type: string
     default: {{ .Values.git.revision }}
   - name: APP_NAME
+    type: string
     default: {{ .Values.appName }}
   tasks:
     - name: git-clone
@@ -20,7 +23,7 @@ spec:
         - name: subdirectory
           value: {{ .Values.git.context }}
         - name: revision
-          value: $(params.GIT_REVISION )
+          value: $(params.GIT_REVISION)
       taskRef:
         kind: Task
         name: git-clone-custom
