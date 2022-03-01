@@ -1,17 +1,19 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: backend-pipeline
+  name: {{ .Values.appName }}
 spec:
   tasks:
     - name: git-clone
       params:
         - name: url
-          value: 'https://github.com/Jaland/argo-tekton-flow.git'
+          value: '{{ .Values.git.url }}'
         - name: submodules
           value: 'true'
         - name: subdirectory
-          value: helm-deployments/backend
+          value: {{ .Values.git.context }}
+        - name: revision
+          value: {{ .Values.git.revision }}
       taskRef:
         kind: ClusterTask
         name: git-clone
@@ -23,7 +25,7 @@ spec:
         - name: PATH_CONTEXT
           value: .
         - name: IMAGE
-          value: 'image-registry.openshift-image-registry.svc:5000/user1-dev/example'
+          value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.namespace }}/{{ .Values.appName }}'
       runAfter:
         - git-clone
       taskRef:

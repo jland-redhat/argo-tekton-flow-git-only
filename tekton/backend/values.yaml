@@ -1,10 +1,7 @@
 ---
-backend:
-  url: REQUIRED
-global:
-  frontend:
-    name: example-frontend
-    port: 8081
-  backend:
-    name: example-backend
-    port: 8080
+appName: backend
+
+git:
+  url: https://github.com/Jaland/argo-tekton-flow.git
+  revision: main
+  context: helm-deployments/backend
