@@ -4,12 +4,12 @@ metadata:
   name: {{ .Values.appName }}
 spec:
   params:
-    - name: GIT_URL
-      value: '{{ .Values.git.url }}'
-    - name: GIT_REVISION
-      value: {{ .Values.git.revision }}
-    - name: APP_NAME
-      value: {{ .Values.appname }}
+  - name: GIT_URL
+    default: '{{ .Values.git.url }}'
+  - name: GIT_REVISION
+    default: {{ .Values.git.revision }}
+  - name: APP_NAME
+    default: {{ .Values.appname }}
   tasks:
     - name: git-clone
       params:
