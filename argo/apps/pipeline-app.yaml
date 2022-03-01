@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-pipeline
+  namespace: gitops-developer
+spec:
+  destination:
+    namespace: myproject
+    server: https://kubernetes.default.svc
+  project: myapp-argo-project
+  source:
+    helm:
+      parameters:
+      - name: appName
+        value: myapp
+    path: tekton
+    repoURL: https://github.com/Jaland/argo-tekton-flow.git
+    targetRevision: HEAD
+  # Turn on automated Syncing
+  syncPolicy:
+    automated:
+      selfHeal: true
