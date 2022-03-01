@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  annotations:
+  name: update-app
+spec:
+  params:
+    - description: Image to update
+      name: image
+      type: string
+    - description: Name of the application
+      name: appName
+      type: string
+    - description: Namespace your Argo Instance is located
+      name: argoNamespace
+      type: string
+  steps:
+    - image: >-
+        image-registry.openshift-image-registry.svc:5000/openshift/cli:$(params.VERSION)
+      name: oc
+      resources: {}
+      script: |
+        #!/usr/bin/env bash
+        oc patch application user1-deployment -p  --type merge '{"spec":{"source":{"helm":{"parameters":[{"name":"image","value":"$( params.image )" },
+              {"name":"appName","value":"$( params.appName )" }]}}}}' -n $( params.argoNamespace )
