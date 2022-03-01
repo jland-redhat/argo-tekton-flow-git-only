@@ -9,7 +9,7 @@ spec:
   - name: GIT_REVISION
     default: {{ .Values.git.revision }}
   - name: APP_NAME
-    default: {{ .Values.appname }}
+    default: {{ .Values.appName }}
   tasks:
     - name: git-clone
       params:
