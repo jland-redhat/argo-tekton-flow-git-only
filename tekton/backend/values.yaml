@@ -4,6 +4,5 @@ appName: backend
 git:
   url: https://github.com/Jaland/example_backend.git
   revision: master
-  context: helm-deployments/backend
 
 argoNamespace: gitops-developer
