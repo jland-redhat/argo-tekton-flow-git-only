@@ -14,13 +14,13 @@ spec:
     - name: git-clone
       params:
         - name: url
-          value: '$( params.GIT_URL )'
+          value: $(params.GIT_URL)
         - name: submodules
           value: 'true'
         - name: subdirectory
           value: {{ .Values.git.context }}
         - name: revision
-          value: '$( params.GIT_REVISION )'
+          value: $(params.GIT_REVISION )
       taskRef:
         kind: Task
         name: git-clone-custom
