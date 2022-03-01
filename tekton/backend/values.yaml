@@ -5,3 +5,5 @@ git:
   url: https://github.com/Jaland/argo-tekton-flow.git
   revision: main
   context: helm-deployments/backend
+
+argoNamespace: gitops-developer

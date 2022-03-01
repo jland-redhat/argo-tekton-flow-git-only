@@ -15,8 +15,8 @@ spec:
         - name: revision
           value: {{ .Values.git.revision }}
       taskRef:
-        kind: ClusterTask
-        name: git-clone
+        kind: Task
+        name: git-clone-custom
       workspaces:
         - name: output
           workspace: app-source
@@ -29,10 +29,23 @@ spec:
       runAfter:
         - git-clone
       taskRef:
-        kind: ClusterTask
+        kind: Task
         name: s2i-java
       workspaces:
         - name: source
           workspace: app-source
+    - name: update-argo-app
+      params:
+        - name: IMAGE
+          value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.namespace }}/{{ .Values.appName }}@$( tasks.s2i-java.results.IMAGE_DIGEST ) }}'
+        - name: APP_NAME
+          value: {{ .Values.appName }}
+        - name: ARGO_NAMESPACE
+          value: {{ .Values.argoNamespace }}
+      runAfter:
+        - s2i-java
+      taskRef:
+        kind: Task
+        name: update-app
   workspaces:
     - name: app-source

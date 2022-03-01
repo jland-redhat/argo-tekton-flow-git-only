@@ -6,20 +6,20 @@ metadata:
 spec:
   params:
     - description: Image to update
-      name: image
+      name: IMAGE
       type: string
     - description: Name of the application
-      name: appName
+      name: APP_NAME
       type: string
     - description: Namespace your Argo Instance is located
-      name: argoNamespace
+      name: ARGO_NAMESPACE
       type: string
   steps:
     - image: >-
-        image-registry.openshift-image-registry.svc:5000/openshift/cli:$(params.VERSION)
+        image-registry.openshift-image-registry.svc:5000/openshift/cli
       name: oc
       resources: {}
       script: |
         #!/usr/bin/env bash
-        oc patch application user1-deployment -p  --type merge '{"spec":{"source":{"helm":{"parameters":[{"name":"image","value":"$( params.image )" },
-              {"name":"appName","value":"$( params.appName )" }]}}}}' -n $( params.argoNamespace )
+        oc patch application user1-deployment -p  --type merge '{"spec":{"source":{"helm":{"parameters":[{"name":"image","value":"$( params.IMAGE )" },
+              {"name":"appName","value":"$( params.APP_NAME )" }]}}}}' -n $( params.ARGO_NAMESPACE )
