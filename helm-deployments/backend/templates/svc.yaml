@@ -1,22 +1,12 @@
 ---
-{{- with .Values.global.backend }}
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ .name }}
-  labels:
-    app: {{ $.Values.global.appname }}
-    name: {{ .name }}
-    {{- range $label := $.Values.global.labels }}
-    {{ $label.key }} : {{ tpl $label.value $ }}
-    {{- end}}
+  name: example
 spec:
   ports:
-  - protocol: TCP
-    port: {{ .port }}
-    targetPort: {{ .port }}
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
   selector:
-    deploymentConfig: {{ .name }}
-  type: ClusterIP
-  sessionAffinity: None
-{{- end -}}
+    app: {{ .Values.appName }}
