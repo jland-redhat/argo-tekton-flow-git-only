@@ -4,9 +4,9 @@ metadata:
   name: s2i-java-custom
 spec:
   description: >-
-    This is a copy of the s2i-java ClusterTask
+    This is a copy of the s2i-java ClusterTask. Changed the default to JDK 8
   params:
-    - default: openjdk-11-ubi8
+    - default: openjdk-8-ubi8
       description: The tag of java imagestream for java version
       name: VERSION
       type: string

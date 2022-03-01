@@ -33,7 +33,7 @@ spec:
         - name: PATH_CONTEXT
           value: .
         - name: IMAGE
-          value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.namespace }}/$( params.APP_NAME )'
+          value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.namespace }}/$(params.APP_NAME)'
       runAfter:
         - git-clone
       taskRef:
@@ -45,7 +45,7 @@ spec:
     - name: update-argo-app
       params:
         - name: IMAGE
-          value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.namespace }}/$( params.APP_NAME )@$( tasks.s2i-java.results.IMAGE_DIGEST ) }}'
+          value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.namespace }}/$(params.APP_NAME)@$(tasks.s2i-java.results.IMAGE_DIGEST) }}'
         - name: APP_NAME
           value: $( params.APP_NAME )
         - name: ARGO_NAMESPACE
