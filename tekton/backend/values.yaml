@@ -3,7 +3,7 @@ appName: backend
 
 git:
   url: https://github.com/Jaland/argo-tekton-flow.git
-  revision: main
+  revision: master
   context: helm-deployments/backend
 
 argoNamespace: gitops-developer
