@@ -9,7 +9,7 @@ spec:
     default: '{{ .Values.git.url }}'
   - name: GIT_REVISION
     type: string
-    default: {{ .Values.git.revision }}
+    default: '{{ .Values.git.revision }}'
   - name: APP_NAME
     type: string
     default: {{ .Values.appName }}
