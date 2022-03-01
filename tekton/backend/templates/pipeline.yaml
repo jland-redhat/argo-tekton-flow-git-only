@@ -3,17 +3,24 @@ kind: Pipeline
 metadata:
   name: {{ .Values.appName }}
 spec:
+  params:
+    - name: GIT_URL
+      value: '{{ .Values.git.url }}'
+    - name: GIT_REVISION
+      value: {{ .Values.git.revision }}
+    - name: APP_NAME
+      value: {{ .Values.appname }}
   tasks:
     - name: git-clone
       params:
         - name: url
-          value: '{{ .Values.git.url }}'
+          value: '$( params.GIT_URL )'
         - name: submodules
           value: 'true'
         - name: subdirectory
           value: {{ .Values.git.context }}
         - name: revision
-          value: {{ .Values.git.revision }}
+          value: '$( params.GIT_REVISION )'
       taskRef:
         kind: Task
         name: git-clone-custom
@@ -25,21 +32,21 @@ spec:
         - name: PATH_CONTEXT
           value: .
         - name: IMAGE
-          value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.namespace }}/{{ .Values.appName }}'
+          value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.namespace }}/$( params.APP_NAME )'
       runAfter:
         - git-clone
       taskRef:
         kind: Task
-        name: s2i-java
+        name: s2i-java-custom
       workspaces:
         - name: source
           workspace: app-source
     - name: update-argo-app
       params:
         - name: IMAGE
-          value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.namespace }}/{{ .Values.appName }}@$( tasks.s2i-java.results.IMAGE_DIGEST ) }}'
+          value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.namespace }}/$( params.APP_NAME )@$( tasks.s2i-java.results.IMAGE_DIGEST ) }}'
         - name: APP_NAME
-          value: {{ .Values.appName }}
+          value: $( params.APP_NAME )
         - name: ARGO_NAMESPACE
           value: {{ .Values.argoNamespace }}
       runAfter:
