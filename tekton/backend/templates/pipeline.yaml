@@ -47,7 +47,7 @@ spec:
         - name: IMAGE
           value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.Namespace }}/$(params.APP_NAME)@$(tasks.s2i-java.results.IMAGE_DIGEST)'
         - name: APP_NAME
-          value: $( params.APP_NAME )
+          value: $(params.APP_NAME)
         - name: ARGO_NAMESPACE
           value: {{ .Values.argoNamespace }}
       runAfter:
