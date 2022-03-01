@@ -20,8 +20,6 @@ spec:
           value: $(params.GIT_URL)
         - name: submodules
           value: 'true'
-        - name: subdirectory
-          value: {{ .Values.git.context }}
         - name: revision
           value: $(params.GIT_REVISION)
       taskRef:
