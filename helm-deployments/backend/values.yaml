@@ -1,0 +1,41 @@
+---
+env: dev
+
+keycloak:
+  redirectUrl: 'https://{{ $.Values.global.appname }}-{{ $.Release.Namespace }}.{{ $.Values.global.cluster.baseDomain }}'
+  username: lskywalker
+  password: lskywalker
+
+oauth:
+  host: '{{ $.Values.global.appname }}-{{ $.Release.Namespace }}.{{ $.Values.global.cluster.baseDomain }}'
+  oidcIssuerUrl: 'https://keycloak-{{ $.Release.Namespace }}.{{ $.Values.global.cluster.baseDomain }}/auth/realms/{{ $.Release.Name }}'
+
+pipeline:
+  backend:
+    url:  'https://{{ $.Values.global.appname }}-{{ $.Release.Namespace }}.{{ $.Values.global.cluster.baseDomain }}/api/v1'
+
+postgres:
+  name: "tododb"
+  app: "example-app"
+  postgresqlUsername: "todo_user"
+  postgresqlPassword: "todo_password"
+  postgresqlDatabase: "todo_database"
+  service:
+    port: 5432
+
+global:
+  appname: example-app
+  backend:
+    name: example-backend
+    port: 8080
+  labels:
+    - key: helm.sh/chart
+      value: '{{ $.Chart.Name }}-{{ $.Chart.Version | replace "+" "_" }}'
+    - key: app.kubernetes.io/managed-by
+      value: "{{ $.Release.Service }}"
+    - key: app.kubernetes.io/instance
+      value: "{{ $.Release.Name }}"
+    - key: app.kubernetes.io/version
+      value: "{{ $.Chart.AppVersion }}"
+  cluster:
+    baseDomain: apps.shared-na4.na4.openshift.opentlc.com
