@@ -1,8 +1,9 @@
 ---
-appName: backend
+appName: myapp
 
 git:
   url: https://github.com/Jaland/example_backend.git
   revision: master
 
 argoNamespace: gitops-developer
+argoAppName: myapp-deployment

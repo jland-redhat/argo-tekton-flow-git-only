@@ -50,6 +50,8 @@ spec:
           value: $(params.APP_NAME)
         - name: ARGO_NAMESPACE
           value: {{ .Values.argoNamespace }}
+        - name: ARGO_APP_NAME
+          value: {{ .Values.argoAppName }}
       runAfter:
         - s2i-java
       taskRef:
