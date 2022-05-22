@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp-pipeline
+  name: {{ .Values.app.name }}-pipeline
 spec:
   destination:
-    namespace: myapp-dev
+    namespace: {{ .Values.argo.namespace }}
     server: https://kubernetes.default.svc
-  project: myapp-argo-project
+  project: {{ .Values.namespace }}
   source:
     helm:
       parameters:
       - name: appName
-        value: myapp
+        value: {{ .Values.app.name }}
     path: tekton
     repoURL: https://github.com/Jaland/argo-tekton-flow.git
     targetRevision: HEAD

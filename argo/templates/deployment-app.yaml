@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp-deployment
+  name: {{ .Values.app.name }}-deployment
 spec:
   destination:
-    namespace: myapp-dev
+    namespace: {{ .Values.argo.namespace }}
     server: https://kubernetes.default.svc
-  project: myapp-argo-project
+  project: {{ .Values.namespace }}
   source:
     helm:
       parameters:
       - name: image
         value: image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
       - name: appName
-        value: myapp
+        value: {{ .Values.app.name }}
     path: deployment
     repoURL: https://github.com/Jaland/argo-tekton-flow.git
     targetRevision: HEAD
