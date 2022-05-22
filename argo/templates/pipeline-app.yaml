@@ -2,11 +2,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .Values.app.name }}-pipeline
+  namespace: {{ .Values.argo.namespace }}
 spec:
   destination:
-    namespace: {{ .Values.argo.namespace }}
+    namespace: {{ .Values.namespace }}
     server: https://kubernetes.default.svc
-  project: {{ .Values.namespace }}
+  project: {{ .Values.argo.project }}
   source:
     helm:
       parameters:
