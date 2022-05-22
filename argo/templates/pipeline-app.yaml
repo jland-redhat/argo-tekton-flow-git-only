@@ -11,8 +11,13 @@ spec:
   source:
     helm:
       parameters:
-      - name: appName
+      - name: app.name
         value: {{ .Values.app.name }}
+      - name: argo.project
+        value: {{ .Values.argo.project }}
+      - name: argo.application
+        value: {{ .Values.app.name }}-deployment
+        
     path: tekton
     repoURL: https://github.com/Jaland/argo-tekton-flow.git
     targetRevision: HEAD

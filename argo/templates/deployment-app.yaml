@@ -13,7 +13,7 @@ spec:
       parameters:
       - name: image
         value: image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
-      - name: appName
+      - name: app.name
         value: {{ .Values.app.name }}
     path: deployment
     repoURL: https://github.com/Jaland/argo-tekton-flow.git

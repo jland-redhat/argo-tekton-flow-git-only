@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: {{ .Values.appName }}
+  name: {{ .Values.app.name }}
 spec:
   params:
   - name: GIT_URL
@@ -12,7 +12,7 @@ spec:
     default: '{{ .Values.git.revision }}'
   - name: APP_NAME
     type: string
-    default: {{ .Values.appName }}
+    default: {{ .Values.app.name }}
   tasks:
     - name: git-clone
       params:
@@ -49,9 +49,9 @@ spec:
         - name: APP_NAME
           value: $(params.APP_NAME)
         - name: ARGO_NAMESPACE
-          value: {{ .Values.argoNamespace }}
+          value: {{ .Values.argo.namespace }}
         - name: ARGO_APP_NAME
-          value: {{ .Values.argoAppName }}
+          value: {{ .Values.argo.application }}
       runAfter:
         - s2i-java
       taskRef:

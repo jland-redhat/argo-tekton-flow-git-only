@@ -2,11 +2,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ .Values.appName }}
+  name: {{ .Values.app.name }}
 spec:
   ports:
     - protocol: TCP
       port: 8080
       targetPort: 8080
   selector:
-    app: {{ .Values.appName }}
+    app: {{ .Values.app.name }}
