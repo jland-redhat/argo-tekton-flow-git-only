@@ -34,11 +34,6 @@ spec:
           value: $(params.VALUES_FILE)
         - name: IMAGE
           value: $(params.IMAGE)
-        - name: TOKEN
-          valueFrom:
-            secretKeyRef:
-              name: git-credentials-tekton
-              key: "token"
       image: $(params.gitInitImage)
       name: push-update
       resources: {}
