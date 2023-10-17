@@ -5,7 +5,7 @@ app:
 git:
   url: https://github.com/jland-redhat/argo-tekton-flow-git-only.git
   password: PLACE_HOLDER
-  revision: master
+  revision: main
 
 argo:
   namespace: developer-gitops
