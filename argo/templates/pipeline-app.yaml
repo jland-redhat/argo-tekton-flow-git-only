@@ -19,7 +19,7 @@ spec:
         value: {{ .Values.app.name }}-deployment
         
     path: tekton
-    repoURL: https://github.com/Jaland/argo-tekton-flow.git
+    repoURL: https://github.com/jland-redhat/argo-tekton-flow-git-only.git
     targetRevision: HEAD
   # Turn on automated Syncing
   syncPolicy:

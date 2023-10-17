@@ -4,5 +4,5 @@ app:
   name: argo-tekton-workflow
 
 argo:
-  project: myapp-argo-project
-  namespace: developer-gitops
+  project: default
+  namespace: openshift-gitops
