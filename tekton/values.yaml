@@ -4,6 +4,7 @@ app:
 
 git:
   url: https://github.com/Jaland/example_backend.git
+  password: PLACE_HOLDER
   revision: master
 
 argo:

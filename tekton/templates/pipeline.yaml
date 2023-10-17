@@ -42,20 +42,21 @@ spec:
       workspaces:
         - name: source
           workspace: app-source
-    - name: update-argo-app
+    - name: update-git
       params:
         - name: IMAGE
           value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.Namespace }}/$(params.APP_NAME)@$(tasks.s2i-java.results.IMAGE_DIGEST)'
-        - name: APP_NAME
-          value: $(params.APP_NAME)
-        - name: ARGO_NAMESPACE
-          value: {{ .Values.argo.namespace }}
-        - name: ARGO_APP_NAME
-          value: {{ .Values.argo.application }}
+        - name: URL
+          value: $(params.GIT_URL)
+        - name: REVISION
+          value: $(params.GIT_REVISION)
+        - name: VALUES_FILE
+          value: 'deployment/values.yaml'
+      
       runAfter:
         - s2i-java
       taskRef:
         kind: Task
-        name: update-app
+        name: update-git
   workspaces:
     - name: app-source

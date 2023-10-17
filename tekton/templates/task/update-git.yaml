@@ -1,0 +1,55 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: update-git
+spec:
+  description: >-
+    This is a copy of the git-clone ClusterTask.
+  params:
+    - description: Repository URL to clone from.
+      name: URL
+      type: string
+    - default: 'main'
+      description: 'Revision to checkout. (branch, tag, sha, ref, etc...)'
+      name: REVISION
+      type: string
+    - description: Values File to update.
+      name: VALUES_FILE
+      type: string
+    - description: Value of new image.
+      name: IMAGE
+      type: string
+  steps:
+    - env:
+        - name: PARAM_URL
+          value: $(params.URL)
+        - name: PARAM_REVISION
+          value: $(params.REVISION)
+        - name: VALUES_FILE
+          value: $(params.VALUES_FILE)
+        - name: IMAGE
+          value: $(params.IMAGE)
+        - name: TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: git-credentials-tekton
+              key: "token"
+      image: $(params.gitInitImage)
+      name: push-update
+      resources: {}
+      script: >
+        git clone $PARAM_URL
+        git checkout $PARAM_REVISION
+        git config --global user.email "bot@bot.bot"
+        git config --global user.name "bot"
+
+        git config --global credential.username "bot"
+        git config --global credential.username "bot"
+        
+        sed -i 's/image: .*/image: ${IMAGE}/' ${VALUES_FILE}
+
+        git add ${VALUES_FILE}
+
+        git commit -m "Update image to ${IMAGE}"
+
+        git push
