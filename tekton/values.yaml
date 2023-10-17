@@ -3,7 +3,7 @@ app:
   name: myapp
 
 git:
-  url: https://github.com/Jaland/example_backend.git
+  url: https://github.com/jland-redhat/argo-tekton-flow-git-only.git
   password: PLACE_HOLDER
   revision: master
 
