@@ -52,7 +52,6 @@ spec:
           value: $(params.GIT_REVISION)
         - name: VALUES_FILE
           value: 'deployment/values.yaml'
-      
       runAfter:
         - s2i-java
       taskRef:
