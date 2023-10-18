@@ -37,7 +37,7 @@ spec:
       image: $(params.gitInitImage)
       name: push-update
       resources: {}
-      script: >
+      script: |
         git clone $PARAM_URL
         git checkout $PARAM_REVISION
         git config --global user.email "bot@bot.bot"
