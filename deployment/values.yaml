@@ -2,4 +2,4 @@
 app:
   name: backend
 
-image: image-registry.openshift-image-registry.svc:5000/user1-dev/backend
+image: ${IMAGE}
