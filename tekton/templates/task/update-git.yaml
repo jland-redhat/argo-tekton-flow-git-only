@@ -38,7 +38,9 @@ spec:
       name: push-update
       resources: {}
       script: >
-        git clone $PARAM_URL
+        git clone $PARAM_URL code
+
+        cd code
 
         git checkout $PARAM_REVISION
 
@@ -48,7 +50,7 @@ spec:
 
 
         git config --global credential.username "bot"
-        
+
         git config --global credential.username "bot"
         
         sed -i 's/image: .*/image: ${IMAGE}/' ${VALUES_FILE}
