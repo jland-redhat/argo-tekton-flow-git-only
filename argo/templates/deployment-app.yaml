@@ -11,8 +11,6 @@ spec:
   source:
     helm:
       parameters:
-      - name: image
-        value: image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
       - name: app.name
         value: {{ .Values.app.name }}
     path: deployment
