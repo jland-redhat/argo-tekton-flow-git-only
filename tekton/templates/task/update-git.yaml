@@ -53,7 +53,7 @@ spec:
 
         git config --global credential.username "bot"
         
-        sed -i "s/image: .*/image: ${IMAGE}/" ${VALUES_FILE}
+        sed -i "s|image: .*|image: ${IMAGE}|" ${VALUES_FILE}
 
         git add ${VALUES_FILE}
 

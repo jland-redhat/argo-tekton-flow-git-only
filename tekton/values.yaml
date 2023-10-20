@@ -8,5 +8,5 @@ git:
   revision: main
 
 argo:
-  namespace: developer-gitops
+  namespace: openshift-gitops
   application: myapp-deployment
