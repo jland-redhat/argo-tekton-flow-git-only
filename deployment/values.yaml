@@ -2,4 +2,4 @@
 app:
   name: backend
 
-image: image-registry.openshift-image-registry.svc:5000/myapp-dev/argo-tekton-workflow@sha256:ad5cfc0186b135cc7d984e55a3229dc18f4a5534c3b885f84287e3bf90d33197
+image: image-registry.openshift-image-registry.svc:5000/myapp-dev/argo-tekton-workflow@sha256:9a1f8acb8cb8ce763d7d1080c84e90f3bf3d9491fdd4de2b5c1985d7853b7462
